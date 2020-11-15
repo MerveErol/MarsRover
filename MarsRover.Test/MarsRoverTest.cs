@@ -38,6 +38,23 @@ namespace MarsRover.Test
         }
 
         [Fact]
+        public void Should_TwoRoverInMars_Success_Result()
+        {
+            //Given
+            Plateau plateau = new Plateau(new Position(5, 5));
+            Rover firstRover = new Rover(plateau, new Position(1, 2), Direction.N);
+            Rover secondRover = new Rover(plateau, new Position(3, 3), Direction.E);
+
+            // Act
+            firstRover.Run("LMLMLMLMM");
+            secondRover.Run("MMRMMRMRRM");
+
+            //Assert
+            Assert.Equal("1 3 N", firstRover.LastRoverPosition());
+            Assert.Equal("5 1 E", secondRover.LastRoverPosition());
+        }
+
+        [Fact]
         public void Should_ArgumentException_When_OutBoundsInput()
         {
             //Given
